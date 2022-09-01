@@ -1,7 +1,7 @@
 -- creates a stored procedure that adds a new correction for a student
 DELIMITER $$
 CREATE
-    PROCEDURE my_proc (IN user_id INT, IN project_name VARCHAR(255), IN score INT)
+    PROCEDURE AddBonus (IN user_id INT, IN project_name VARCHAR(255), IN score INT)
     BEGIN
         CASE WHEN project_name NOT IN (SELECT name FROM projects) THEN
             INSERT INTO projects (name) VALUES (project_name);
