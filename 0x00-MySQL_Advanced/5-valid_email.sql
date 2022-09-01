@@ -9,6 +9,7 @@ CREATE
             SET NEW.valid_email = 1;
             ELSEIF OLD.valid_email = 1 THEN
             SET NEW.valid_email = 0;
+            END IF;
         END IF;
     END$$
 DELIMITER ;
