@@ -1,4 +1,4 @@
 // Inserts a document to a collection
 db.school.insert({
-    "name": "Holberton school"
+    name: "Holberton school"
 })
