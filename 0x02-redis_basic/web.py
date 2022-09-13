@@ -7,18 +7,19 @@ from typing import Callable
 
 r = redis.Redis()
 
-def count_calls(function: Callable) -> Callable:
-    """Decorator: counts the no of times a function was called."""
 
-    @wraps(function)
+def count_calls(method: Callable) -> Callable:
+    """Decorator: counts the no. of times a function was called."""
+
+    @wraps(method)
     def wrapper(url):
         """Wrapper function of the decorator."""
         r.incr("count:{}".format(url))
         count = r.get(f"cached:{url}")
         if count:
             return count.decode("utf-8")
-        r.setex(f"cached:{url}", 10, function(url))
-        return function
+        r.setex(f"cached:{url}", 10, method(url))
+        return method(url)
 
     return wrapper
 
