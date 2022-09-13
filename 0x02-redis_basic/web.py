@@ -5,10 +5,10 @@ import requests
 from functools import wraps
 from typing import Callable
 
+r = redis.Redis()
 
 def count_calls(function: Callable) -> Callable:
     """Decorator: counts the no of times a function was called."""
-    r = redis.Redis()
 
     @wraps(function)
     def wrapper(url):
