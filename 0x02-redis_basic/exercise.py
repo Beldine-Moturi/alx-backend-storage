@@ -22,14 +22,11 @@ class Cache():
         return key
 
     def get(
-        self,
-        key: str,
-        fn: Optional[Callable] = None
-        ) -> Union[str, bytes, int, float, None]:
-        """retrieves data from the cache in desired format"""
-
+        self, key: str, fn: Optional[Callable] = None
+    ) -> Union[str, bytes, int, float]:
+        """Gets data from the cache."""
         data = self._redis.get(key)
-        if data:
+        if fn:
             data = fn(data)
         return data
 
