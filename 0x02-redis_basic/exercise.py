@@ -33,12 +33,12 @@ class Cache():
             data = fn(data)
         return data
 
-    def get_str(self, data: bytes) -> str:
-        """Converts redis data to string"""
-
+    def get_str(self, key: str) -> str:
+        """Converts redis data to string."""
+        data = self._redis.get(key)
         return data.decode("utf-8")
 
-    def get_int(self, data: bytes) -> int:
-        """Converts redis data to int"""
-
+    def get_int(self, key: str) -> int:
+        """Converts redis data to int."""
+        data = self._redis.get(key)
         return int(data)
