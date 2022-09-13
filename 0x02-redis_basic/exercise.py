@@ -14,7 +14,7 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         """wrapper func of the decorator"""
-        self._redis.inr(key)
+        self._redis.incr(key)
         return method(self, *args, **kwargs)
 
     return wrapper
