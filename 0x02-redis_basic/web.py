@@ -13,8 +13,7 @@ def count_calls(function: Callable) -> Callable:
     @wraps(function)
     def wrapper(url):
         """Wrapper function of the decorator."""
-        key = "count:{}".format(url)
-        r.incr(key)
+        r.incr("count:{}".format(url))
         count = r.get(f"cached:{url}")
         if count:
             return count.decode("utf-8")
